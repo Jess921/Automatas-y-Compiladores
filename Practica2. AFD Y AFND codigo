@@ -1,0 +1,579 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[absolute,overlay]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, right=1in, left=1in}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[pages=some]{background}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\pagestyle{empty}
+
+\backgroundsetup{
+  scale=1,
+  opacity=1,
+  angle=0,
+  contents={\includegraphics[width=\paperwidth,height=\paperheight]{Imagenes/icbi-b.jpg}}
+}
+
+\usepackage{xcolor}
+\definecolor{rojo}{rgb}{0.8, 0, 0}
+
+\usepackage{titlesec}
+
+
+\titleformat{\section}
+  {\color{rojo}\Large\bfseries}
+  {}
+  {0pt}
+  {}
+
+\titleformat{\subsection}
+  {\color{rojo}\large\bfseries}
+  {}
+  {0pt}
+  {}
+
+\begin{document}
+\BgThispage
+\-
+\begin{textblock*}{15cm}(4cm, 9cm)
+    {\fontsize{30pt}{16pt}\selectfont
+    \textcolor{rojo}{\textbf{REPORTE DE PRÁCTICA NO. 2}}
+    }
+\end{textblock*}
+\begin{textblock*}{15cm}(4cm, 11cm)
+    {\fontsize{15pt}{16pt}\selectfont
+    \textcolor{rojo}{\textbf{Automata Finito Determinista y Automata Finito No Determinista}}
+    }
+\end{textblock*}
+\begin{textblock*}{15cm}(4cm, 12cm)
+    {\fontsize{13pt}{16pt}\selectfont
+    \textcolor{rojo}{\textbf{ALUMNO: Ceron Perez Jessica}}
+    }
+\end{textblock*}
+\begin{textblock*}{15cm}(6cm, 12.5cm)
+    {\fontsize{11pt}{16pt}\selectfont
+    \textcolor{rojo}{\textbf{Dr. Eduardo Cornejo-Velázquez}}
+    }
+\end{textblock*}
+
+\newpage
+
+\section{Instruccion. Para los siguientes ejercicios construir los siguientes elementos:}
+\begin{enumerate}
+    \item Tupla del AFD-AFD = \[(\sigma,Q , f, q0, F)\] 
+    \item Diagrama de transiciones
+    \item Tabla de transiciones
+    \item Simulación en Automaton Simulator (https://automatonsimulator.com/) - captura de pantalla
+    \item Palabras aceptadas (5) y palabras rechazadas (5)
+\end{enumerate}
+Integrar y entregar reporte de la práctica en la plantilla del curso (Latex).
+
+\section{Ejercicio 1}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (0,1)\] que acepte el conjunto de palabras que inician en “0”.
+
+\begin{itemize}
+   \item Tupla
+        \[\alpha= (0,1)\]
+        \[Q= q0, q1, q2\]
+        \[f= (q0,0)= q1, (q0,1)= q2, (q1,0)= q1, (q1,1)= q1,(q2,0)= q2, (q2,1)= q2\]
+        \[q0= 0\]
+        \[F= q1\]
+    \item Diagrama de transicion
+        \begin{figure}[h]
+        \centering
+         \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio 1.png}
+        \end{figure}
+\newpage
+    \item Tabla de transicion
+        \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        Estado & 0 & 1 \\
+        \hline
+        q0 & q1 & q2 \\
+        q1 & q1 & q1 \\
+        q2 & q2 & q2 \\
+        \hline
+    \end{tabular}
+    \end{table}
+    
+    \item Simulacion
+    \begin{figure}[h]
+        \centering
+         \includegraphics[width=0.5\textwidth]{Imagenes/simulacion1.png}
+        \end{figure}
+        
+    \item Palabras aceptadas
+    \begin{enumerate}
+    \item 0
+    \item 01
+    \item 011
+    \item 0010
+    \item 011110
+\end{enumerate}
+\end{itemize}
+
+\section{Ejercicio 2}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (0,1)\] que acepte el conjunto de palabras que terminan en “1”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (0,1)\]
+            \[Q= q0, q1\]
+            \[f= (q0,0)= q0, (q0,1)= q1, (q1,0)= q0, (q1,1)= q1,\]
+            \[q0= 0\]
+            \[F= q1\]
+\newpage
+    \item Diagrama de transicion
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio2.png}
+            \end{figure}
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|}
+                 \hline
+                 Estado & 0 & 1 \\
+                 \hline
+                 q0 & q0 & q1 \\
+                 q1 & q0 & q1 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+    \item Simulacion
+            \begin{figure}[h]
+                 \centering
+                 \includegraphics[width=0.5\textwidth]{Imagenes/simulacion2.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item 1
+            \item 11
+            \item 0011
+            \item 101
+            \item 10001
+\end{enumerate}
+\end{itemize}
+\newpage
+
+\section{Ejercicio 3}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (0,1)\] que acepte el conjunto de palabras que contienen la subcadena “01”.
+
+\begin{itemize}
+    \item Tupla
+             \[\alpha= (0,1)\]
+             \[Q= q0, q1, q2\]
+             \[f= (q0,0)= q1, (q0,1)= q0, (q1,0)= q1, (q1,1)= q2, (q2,0)= q2, (q2,1)= q2\]
+             \[q0= q0\]
+             \[F= q2\]
+    \item Diagrama de transicion
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio3.png}
+            \end{figure}
+    \item Tabla de transicion
+                 \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|}
+                 \hline
+                 Estado & 0 & 1 \\
+                 \hline
+                 q0 & q1 & q0 \\
+                 q1 & q1 & q2 \\
+                 q2 & q2 & q2 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+\newpage
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion3.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item 01
+            \item 101
+            \item 1101
+            \item 0001
+            \item 010101
+\end{enumerate}
+\end{itemize}
+
+\section{Ejercicio 4}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (0,1)\] que acepte el conjunto de palabras que no contienen la subcadena “01”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (0,1)\]
+            \[Q= q0, q1, q2\]
+            \[f= (q0,0)= q1, (q0,1)= q0, (q1,0)= q1, (q1,1)= q2, (q2,0)= q2, (q2,1)= q2\]
+            \[q0= 0\]
+            \[F= q0, q1\]
+\newpage
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio4.png}
+            \end{figure}
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|}
+                 \hline
+                 Estado & 0 & 1 \\
+                 \hline
+                 q0 & q1 & q0 \\
+                 q1 & q1 & q2 \\
+                 q2 & q2 & q2 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion4.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item 0
+            \item 1
+            \item 00000
+            \item 111
+            \item 11
+\end{enumerate}
+\end{itemize}
+\newpage
+
+\section{Ejercicio 5}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (a,b,c)\] que acepte el conjunto de palabras que inician con la subcadena “ac” o
+terminan con la subcadena “ab”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (a, b, c)\]
+            \[Q= q0, q1, q2, q3, q4, q5\]
+            \[f= (q0,a)= q1, (q0,b)= q5, (q0,c)= q5,\newline
+            (q2,a)= q2, (q2,b)= q2, (q2,c)= q2,\newline
+            (q1,a)= q1, (q1,b)= q3, (q1,c)= q2,\newline
+            (q3,a)= q1, (q3,b)= q4, (q3,c)= q5,\newline
+            (q4,a)= q1, (q4,b)= q5, (q4,c)= q5,\newline
+    (q5,a)= q5, (q5,b)= q5, (q5,c)= q5\]
+            \[q0= 0\]
+            \[F= q2, q4\]
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio5.png}
+            \end{figure}
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|c|}
+                 \hline
+                 Estado & a & b & c \\
+                 \hline
+                 q0 & q1 & q5 & q5 \\
+                 q1 & q1 & q3 & q2 \\
+                 q2 & q2 & q2 & q2 \\
+                 q3 & q1 & q4 & q5 \\
+                 q4 & q1 & q5 & q5 \\
+                 q5 & q5 & q5 & q5 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+\newpage
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion5.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item abb
+            \item acc
+            \item aabb
+            \item ac
+            \item aaacba
+\end{enumerate}
+    
+\end{itemize}
+\section{Ejercicio 6}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (a,b,c)\] que acepte el conjunto de palabras que inician con la subcadena “ac” y
+no terminan con la subcadena “ab”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (a, b, c)\]
+            \[Q= q0, q1, q2, q3, q4, q5, q6\]
+            \[f= (q0,a)= q1, (q0,b)= q6, (q0,c)= q6,\newline
+            (q1,a)= q6, (q1,b)= q6, (q21,c)= q2,\newline
+            (q2,a)= q3, (q2,b)= q5, (q2,c)= q5,\newline
+            (q3,a)= q3, (q3,b)= q4, (q3,c)= q5,\newline
+            (q4,a)= q6, (q4,b)= q6, (q4,c)= q6,\newline
+            (q5,a)= q5, (q5,b)= q5, (q5,c)= q5,\newline
+            (q6,a)= q6, (q6,b)= q6, (q6,c)= q6\]
+            \[q0= 0\]
+            \[F= q2, q5\]
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio6.png}
+            \end{figure}
+\newpage
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|c|}
+                 \hline
+                 Estado & a & b & c \\
+                 \hline
+                 q0 & q1 & q6 & q6 \\
+                 q1 & q6 & q6 & q2 \\
+                 q2 & q3 & q5 & q5 \\
+                 q3 & q6 & q6 & q6 \\
+                 q4 & q5 & q5 & q5 \\
+                 q5 & q6 & q6 & q6 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion6.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item ac
+            \item acb
+            \item acca
+            \item accb
+            \item acacac  
+        \end{enumerate}
+\end{itemize}
+
+
+\section{Ejercicio 7}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (a,b,c)\] que acepte el conjunto de palabras que inician con la subcadena “ac” o
+no terminan con la subcadena “ab”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (a, b, c)\]
+            \[Q= q0, q1, q2, q3, q4, q5, q6, q7\]
+            \[f= (q0,a)= q1, (q0,b)= q5, (q0,c)= q5,\newline
+            (q1,a)= q5, (q1,b)= q3, (q1,c)= q2,\newline
+            (q2,a)= q2, (q2,b)= q2, (q2,c)= q2,\newline
+            (q3,a)= q1, (q3,b)= q4, (q3,c)= q5,\newline
+            (q4,a)= q5, (q4,b)= q5, (q4,c)= q5,\newline
+            (q5,a)= q5, (q5,b)= q5, (q5,c)= q5,\newline
+         (q6,a)= q6, (q6,b)= q6, (q6,c)= q6
+             (q7,a)= q7, (q7,b)= q7, (q7,c)= q7\]
+            \[q0= 0\]
+            \[F= q2, q5, q6\]
+\newpage
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio7.png}
+            \end{figure}
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|c|}
+                 \hline
+                 Estado & a & b & c \\
+                 \hline
+                 q0 & q1 & q5 & q5 \\
+                 q1 & q5 & q3 & q2 \\
+                 q2 & q2 & q2 & q2 \\
+                 q3 & q1 & q4 & q5 \\
+                 q4 & q5 & q5 & q5 \\
+                 q5 & q5 & q5 & q5 \\
+                 q6 & q6 & q6 & q6 \\
+                 q7 & q7 & q7 & q7 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion7.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item ac
+            \item bc
+            \item acab
+            \item aacab
+            \item accb  
+        \end{enumerate}
+\end{itemize}
+\newpage
+
+\section{Ejercicio 8}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (a,b,c)\] que acepte el conjunto de palabras que no inician con la subcadena “ac”
+y no terminan con la subcadena “ab”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (a, b, c)\]
+            \[Q= q0, q1, q2, q3, q4, q5, q6\]
+            \[f= (q0,a)= q1, (q0,b)= q4, (q0,c)= q4,\newline
+            (q1,a)= q4, (q1,b)= q4, (q1,c)= q2,\newline
+            (q2,a)= q5, (q2,b)= q5, (q2,c)= q5,\newline
+            (q3,a)= q4, (q3,b)= q5, (q3,c)= q4,\newline
+            (q4,a)= q1, (q4,b)= q3, (q4,c)= q4,\newline
+            (q5,a)= q5, (q5,b)= q5, (q5,c)= q5,\]
+            \[q0= 0\]
+            \[F= q0, q4, q6\]
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio8.png}
+            \end{figure}
+            
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|c|}
+                 \hline
+                 Estado & a & b & c \\
+                 \hline
+                 q0 & q1 & q4 & q4 \\
+                 q1 & q4 & q4 & q2 \\
+                 q2 & q5 & q5 & q5 \\
+                 q3 & q4 & q5 & q4 \\
+                 q4 & q1 & q3 & q4 \\
+                 q5 & q5 & q5 & q5 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+\newpage
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion8.png}
+            \end{figure}
+    
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item b
+            \item bc
+            \item abc
+            \item aabbcc
+            \item bbc
+        \end{enumerate}
+\end{itemize}
+
+
+\section{Ejercicio 9}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (0,1)\] que acepte el conjunto de palabras que no contienen a la subcadena
+“01”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (0, 1)\]
+            \[Q= q0, q1, q2\]
+            \[f= (q0,0)= q0, (q0,1)= q2, (q1,0)= q1, (q2,0)= q1, (q2,1)= q2\]
+            \[q0= 0\]
+            \[F= q0, q1, q2\]
+\newpage
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio9.png}
+            \end{figure}
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|}
+                 \hline
+                 Estado & a & b\\
+                 \hline
+                 q0 & q0 & q2 \\
+                 q1 & q1 & rechazo \\
+                 q2 & q1 & q2 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion9.png}
+            \end{figure}
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item 000
+            \item 111
+            \item 0
+            \item 1
+            \item 11111
+        \end{enumerate}
+\end{itemize}
+
+\newpage
+
+\section{Ejercicio 10}
+Obtenga un Autómata Finito Determinista (AFD) dado el lenguaje definido en el alfabeto \[\sigma= (a,b,c)\] que acepte el conjunto de palabras que inician en la subcadena
+“ac” y terminan en la subcadena “ab”.
+
+\begin{itemize}
+    \item Tupla
+            \[\alpha= (a, b, c)\]
+            \[Q= q0, q1, q2, q3, q4, q5, q6\]
+            \[f= (q0,a)= q1, (q0,b)= q6, (q0,c)= q6,\newline
+            (q1,a)= q6, (q1,b)= q6, (q1,c)= q2,\newline
+            (q2,a)= q4, (q2,b)= q3 (q2,c)= q3,\newline
+            (q3,a)= q4, (q3,b)= q3, (q3,c)= q3,\newline
+            (q4,a)= q4, (q4,b)= q5, (q4,c)= q3,\newline
+            (q5,a)= q5, (q5,b)= q5, (q5,c)= q5,
+            (q6,a)= q6, (q6,b)= q6, (q6,c)= q6\]
+            \[q0= 0\]
+            \[F= q5\]
+    \item Diagrama de transicion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/ejercicio10.png}
+            \end{figure}
+    \item Tabla de transicion
+            \begin{table}[h]
+                 \centering
+                 \begin{tabular}{|c|c|c|c|}
+                 \hline
+                 Estado & a & b & c \\
+                 \hline
+                 q0 & q1 & q6 & q6 \\
+                 q1 & q6 & q6 & q2 \\
+                 q2 & q4 & q3 & q3 \\
+                 q3 & q4 & q3 & q3 \\
+                 q4 & q4 & q5 & q3 \\
+                 q5 & q5 & q5 & q5 \\
+                 q6 & q6 & q6 & q6 \\
+                 \hline
+            \end{tabular}
+            \end{table}
+    \item Simulacion
+           \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{Imagenes/simulacion10.png}
+            \end{figure}
+\newpage
+    \item Palabras aceptadas
+         \begin{enumerate}
+            \item acab
+            \item acabac
+            \item acabab
+            \item acabbb
+            \item acabaa
+        \end{enumerate}
+\end{itemize}
+\end{document}
